@@ -1,3 +1,4 @@
+import random
 from random import randint
 from IRing import *
 from ILluitador import ILluitador
@@ -37,13 +38,13 @@ class Ring(IRing):
             efecteSobreDefensor = 0
             efecteSobreAtacant = 0
             missatge = ""
-
+            ostiaDoble = random.randint(0, 1)
             if pica in [LlocOnPicar.CAP, LlocOnPicar.COSTATESQUERRA, LlocOnPicar.COSTATDRET, LlocOnPicar.PANXA]:
-                efecteSobreDefensor = 1
+                efecteSobreDefensor = 1 + ostiaDoble
                 efecteSobreAtacant = 0
                 missatge = f'{self._Lluitadors[elQueRep].get_nom()} ({self._Lluitadors[elQueRep].get_vida()}) rep un cop al {pica.name} de {self._Lluitadors[elQuePica].get_nom()} ({self._Lluitadors[elQuePica].get_vida()})'
             elif pica == LlocOnPicar.ILEGAL:
-                efecteSobreDefensor = 1
+                efecteSobreDefensor = 1 + ostiaDoble
                 efecteSobreAtacant = 0
                 missatge = f'{self._Lluitadors[elQueRep].get_nom()} ({self._Lluitadors[elQueRep].get_vida()}) rep un cop ILEGAL de {self._Lluitadors[elQuePica].get_nom()} ({self._Lluitadors[elQuePica].get_vida()})'
             else:
@@ -52,11 +53,15 @@ class Ring(IRing):
             if pica in proteccio or pica == LlocOnPicar.ILEGAL:
                 self._Lluitadors[elQueRep].treu_vida(efecteSobreDefensor)
                 self._Lluitadors[elQuePica].treu_vida(efecteSobreAtacant)
+                missatge = missatge + " Ostia doble!!!!" if ostiaDoble else missatge
                 print(missatge)
             else:
-                print(
-                    f'{self._Lluitadors[elQueRep].get_nom()} atura el cop al {pica.name} de {self._Lluitadors[elQuePica].get_nom()}')
-
+                missatge = f'{self._Lluitadors[elQueRep].get_nom()} atura el cop al {pica.name} de {self._Lluitadors[elQuePica].get_nom()}'
+                missatge = missatge + " Ostia doble!!!!" if ostiaDoble else missatge
+                if ostiaDoble:
+                    efecteSobreAtacant = 1
+                    self._Lluitadors[elQuePica].treu_vida(efecteSobreAtacant)
+                print(missatge)
             if pica == LlocOnPicar.ILEGAL:
                 self.copsIlegals[elQuePica] = self.copsIlegals[elQuePica] + 1
                 if self.copsIlegals[elQuePica] == 3:
