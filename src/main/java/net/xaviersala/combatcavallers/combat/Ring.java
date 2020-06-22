@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.xaviersala.combatcavallers.LlocOnPicar;
+import net.xaviersala.combatcavallers.lluitador.AtacResult;
 import net.xaviersala.combatcavallers.lluitador.ILluitador;
 
 /**
@@ -64,16 +65,42 @@ public class Ring implements IRing {
 
             int elQueRep = (elQuePica + 1) % 2;
             List<LlocOnPicar> proteccio = _Lluitadors.get(elQueRep).getLluitador().Protegeix();
-            LlocOnPicar pica = _Lluitadors.get(elQuePica).getLluitador().Pica();
-            int forca = 1;
+            AtacResult atac = _Lluitadors.get(elQuePica).getLluitador().Pica();
+            LlocOnPicar pica = atac.getLlocOnPicar();
+
+            int efecteSobreDefensor = 0;
+            int efecteSobreAtacant = 0;
+            String missatge = "";
+
+            switch (pica) {
+                case Cap:
+                case CostatDret:
+                case CostatEsquerra:
+                case Panxa:
+                    efecteSobreDefensor = 1;
+                    efecteSobreAtacant = 0;
+                    missatge = _Lluitadors.get(elQueRep).getNom() + "(" + _Lluitadors.get(elQueRep).getVida()
+                            + ") rep un cop al " + pica + " de " + _Lluitadors.get(elQuePica).getNom() + "("
+                            + _Lluitadors.get(elQueRep).getVida() + ")";
+                    break;
+                case CopIlegal:
+                    efecteSobreDefensor = 1;
+                    efecteSobreAtacant = 0;
+                    missatge = _Lluitadors.get(elQueRep).getNom() + "(" + _Lluitadors.get(elQueRep).getVida()
+                            + ") rep un cop ILEGAL de " + _Lluitadors.get(elQuePica).getNom() + "("
+                            + _Lluitadors.get(elQueRep).getVida() + ")";
+                    ;
+                    break;
+                default:
+                    missatge = "No ha passat res";
+                    break;
+            }
 
             boolean haRebut = proteccio.contains(pica) || pica == LlocOnPicar.CopIlegal;
             if (haRebut) {
-                _Lluitadors.get(elQueRep).TreuVida(forca);
-                LOGGER.log(Level.INFO,
-                        _Lluitadors.get(elQueRep).getNom() + "(" + _Lluitadors.get(elQueRep).getVida()
-                                + ") rep un cop al " + pica + " de " + _Lluitadors.get(elQuePica).getNom() + "("
-                                + _Lluitadors.get(elQuePica).getVida() + ")");
+                _Lluitadors.get(elQueRep).TreuVida(efecteSobreDefensor);
+                _Lluitadors.get(elQuePica).TreuVida(efecteSobreAtacant);
+                LOGGER.log(Level.INFO, missatge);
 
             } else {
                 LOGGER.log(Level.INFO, _Lluitadors.get(elQueRep).getNom() + " atura el cop al " + pica + " de "
@@ -87,7 +114,6 @@ public class Ring implements IRing {
                 }
             }
 
-            LOGGER.log(Level.WARNING, _Lluitadors.get(0) + " vs " + _Lluitadors.get(1));
             elQuePica = elQueRep;
         }
 
