@@ -1,7 +1,9 @@
 package net.xaviersala.combatcavallers;
 
 import net.xaviersala.combatcavallers.combat.Ring;
+import net.xaviersala.combatcavallers.lluitador.ILluitador;
 import net.xaviersala.combatcavallers.lluitador.LLuitadorRandom;
+import net.xaviersala.combatcavallers.lluitador.LluitadorTrampos;
 
 /**
  * Programa que simula el funcionament de la 'boxa entre cavallers'.
@@ -11,18 +13,20 @@ import net.xaviersala.combatcavallers.lluitador.LLuitadorRandom;
  */
 public class App {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    // Creo dos boxejadors
-    LLuitadorRandom lluitador1 = new LLuitadorRandom("MatxacaCaps");
-    LLuitadorRandom lluitador2 = new LLuitadorRandom("DestrossaPilotes");
+		// Un lluitador trampós s'enfronta a un lluitador random
+		// Lluitador random
+		ILluitador lluitador1 = new LLuitadorRandom("Random");
+		// Lluitador tramós
+		ILluitador lluitador2 = new LluitadorTrampos("Dolentot");
 
-    // Poso els dos boxejadors en el combat
-    Ring combat = new Ring();
+		// Poso els dos boxejadors en el combat
+		Ring combat = new Ring();
 
-    combat.EntradaLluitadors(lluitador1, lluitador2);
-    combat.Lluiteu();
+		combat.EntradaLluitadors(lluitador1, lluitador2);
+		combat.Lluiteu();
 
-  }
+	}
 
 }
