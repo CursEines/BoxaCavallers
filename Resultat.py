@@ -52,7 +52,7 @@ class Resultat(ICombatents):
         return self._Vida
 
     def es_Ko(self) -> bool:
-        return self._Vida == 0
+        return self._Vida <= 0
 
     def get_Lluitador(self) -> ILluitador:
         return self._Lluitador

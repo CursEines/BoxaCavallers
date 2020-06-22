@@ -1,16 +1,15 @@
+from random import sample, choice
+
+from llocOnPicar import Atac
+
+
 class ILluitador:
     def get_nom(self) -> str:
-        """retorna el nom del lluitador."""
-        pass
+        return self._nom
 
     def Protegeix(self) -> list:
-        """Llista de llocs on es protegeix"""
-        pass
+        return sample(self._copsPossibles, 3)
 
     def Pica(self):
-        """Determina on pica el lluitador"""
-        pass
-
-    def get_Forca(self) -> int:
-        """Determina la força del cop"""
-        pass
+        pica = choice(self._copsPossibles)
+        return Atac.NORMAL, pica
