@@ -63,7 +63,7 @@ public class LLuitadorRandom implements ILluitador {
 	 * @return posició esquivada
 	 */
 	public List<LlocOnPicar> Esquiva() {
-		
+		List<LlocOnPicar> esquivar = copsPossibles;
 	}
 
 	/**
