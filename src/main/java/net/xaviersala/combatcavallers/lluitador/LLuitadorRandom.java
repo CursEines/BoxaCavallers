@@ -57,6 +57,15 @@ public class LLuitadorRandom implements ILluitador {
 		return proteccio.stream().filter(item -> item != noProtegeix).collect(Collectors.toList());
 	}
 
+		/**
+	 * El boxejador esquiva una de les posicions en les que pot rebre un cop.
+	 *
+	 * @return posició esquivada
+	 */
+	public List<LlocOnPicar> Esquiva() {
+		
+	}
+
 	/**
 	 * @return retorna el nom del boxejador.
 	 */
