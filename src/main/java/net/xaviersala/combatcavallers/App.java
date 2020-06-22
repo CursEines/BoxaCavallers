@@ -18,7 +18,7 @@ public class App {
     LLuitadorRandom lluitador2 = new LLuitadorRandom("DestrossaPilotes");
 
     // Poso els dos boxejadors en el combat
-    Ring combat = new Ring();
+    Ring combat = new Ring("Linus Torvalds");
 
     combat.EntradaLluitadors(lluitador1, lluitador2);
     combat.Lluiteu();

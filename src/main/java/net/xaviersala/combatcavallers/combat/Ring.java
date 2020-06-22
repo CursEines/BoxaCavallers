@@ -25,10 +25,17 @@ public class Ring implements IRing {
 
     List<ICombatents> _Lluitadors;
     List<Integer> copsIlegals;
+    String patrocinador;
 
     public Ring() {
         _Lluitadors = new ArrayList<ICombatents>(2);
         copsIlegals = new ArrayList<Integer>(2);
+    }
+
+    public Ring(String patrocinador) {
+        _Lluitadors = new ArrayList<ICombatents>(2);
+        copsIlegals = new ArrayList<Integer>(2);
+        this.patrocinador= patrocinador;
     }
 
     /**
@@ -135,7 +142,8 @@ public class Ring implements IRing {
         }
 
         LOGGER.log(Level.INFO, "VICTÒRIA DE " + guanyador.getNom() + "!!! " + comentariLocutor);
-
+        if (patrocinador != null && !patrocinador.isEmpty())
+            LOGGER.log(Level.INFO, "COMBAT PATROCINAT PER " +patrocinador+"!!!");
         return toIResultat();
 
     }
