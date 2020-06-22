@@ -9,6 +9,9 @@ import net.xaviersala.combatcavallers.lluitador.LLuitadorRandom;
  * @author xavier
  *
  */
+
+// Prova per fer un pull request. No he canviat res del codi, només aquest comentari.
+
 public class App {
 
   public static void main(String[] args) {
