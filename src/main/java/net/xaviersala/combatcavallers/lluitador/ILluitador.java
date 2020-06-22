@@ -20,6 +20,11 @@ public interface ILluitador {
      * /// @return Retorna el lloc en el que el lluitador pica
      */
     LlocOnPicar Pica();
+
+        /**
+     * @return Retorna els llocs en que el lluitador pot esquivar
+     */
+    List<LlocOnPicar> Esquiva();
     
     /**
      * @return Retorna la força del cop
