@@ -1,6 +1,7 @@
 package net.xaviersala.combatcavallers;
 
 import net.xaviersala.combatcavallers.combat.Ring;
+import net.xaviersala.combatcavallers.lluitador.LLuitadorEntrenat;
 import net.xaviersala.combatcavallers.lluitador.LLuitadorRandom;
 
 /**
@@ -15,7 +16,7 @@ public class App {
 
     // Creo dos boxejadors
     LLuitadorRandom lluitador1 = new LLuitadorRandom("MatxacaCaps");
-    LLuitadorRandom lluitador2 = new LLuitadorRandom("DestrossaPilotes");
+    LLuitadorEntrenat lluitador2 = new LLuitadorEntrenat("FolletTortuga");
 
     // Poso els dos boxejadors en el combat
     Ring combat = new Ring();
