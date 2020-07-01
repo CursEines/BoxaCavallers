@@ -1,8 +1,8 @@
 package net.xaviersala.combatcavallers.combat;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class Ring implements IRing {
     private static final int PALLISSA = 5;
     private static final int VIDAINICIAL = 20;
 
-    Random aleatori = new Random();
+    SecureRandom aleatori = new SecureRandom();
     private final static Logger LOGGER = Logger.getLogger("Ring");
 
     List<ICombatents> _Lluitadors;
